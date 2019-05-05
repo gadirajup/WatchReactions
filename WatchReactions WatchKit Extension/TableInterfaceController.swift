@@ -7,10 +7,12 @@
 //
 
 import WatchKit
-import Foundation
+import AVFoundation
 
 
-class TableInterfaceController: WKInterfaceController {
+class TableInterfaceController: WKInterfaceController, SoundPlaying {
+    var audioPlayer: AVAudioPlayer?
+    
 
     @IBOutlet weak var table: WKInterfaceTable!
     
@@ -39,6 +41,10 @@ class TableInterfaceController: WKInterfaceController {
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+    }
+    
+    override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
+        playSound(named: sounds[rowIndex])
     }
 
 }
